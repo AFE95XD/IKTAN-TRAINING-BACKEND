@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+      link(href="http://fonts.cdnfonts.com/css/avenir", rel="stylesheet")
+      link(href="http://fonts.cdnfonts.com/css/humanst521-lt-bt", rel="stylesheet")
+      link(href="http://fonts.cdnfonts.com/css/utm-avo", rel="stylesheet")
+      include _style
+      //amechi "https://i.imgur.com/QvDL6yr.png"
+  body
+    .borde
+      img.img(src="https://i.imgur.com/q5LLhGm.png")
+      .containerLogo
+        img.imgLogo(src="https://upload.wikimedia.org/wikipedia/en/2/2f/Kinder_Morgan_logo.svg?fbclid=IwAR1Yp7vXCeSmL_e_S2KU1tRljCIiBfAE_0WqqfpfGMQcmsMDLkVWJK1ljns")
+      .containerIktan
+        img.imgIktan(src="https://i.imgur.com/rWlUHVM.png")
+      .containerTexto
+        .containerTextoUno
+          | Extendido a:
+        .containerTextoDos
+          | #{user.nombre} #{user.apellidoPaterno} #{user.apellidoMaterno}
+        .containerTextoTres
+          | Por haber completado satisfactoriamente el curso de:
+        .containerTextoCuatro
+          | #{curso.nombre}
+        .containerTextoCinco
+          | Con una calificacion de: #{calificacion}
+        .containerTextoSeis
+          | #{curso.descripcion}
+      .containerHeader
+        .vertical
+          img.firmas(src=`http://127.0.0.1:3000/firmasElectronicas/${capacitadores.firmaElectronica}`)
+          br
+          b Ing. #{capacitadores.nombre} #{capacitadores.apellidoPaterno} #{capacitadores.apellidoMaterno}
+          br
+          span  #{capacitadores.puestoCapacitador}
+            br
+            | #{capacitadores.empresaCapacitador}
+            br
+   
+        .horizontal
+          img.firmas(src=`http://127.0.0.1:3000/firmasElectronicas/${capacitadorPrincipal.firmaElectronica}`)
+          br
+          b Ing. #{capacitadorPrincipal.nombre} #{capacitadorPrincipal.apellidoPaterno} #{capacitadorPrincipal.apellidoMaterno}
+          br
+          span  #{capacitadorPrincipal.puestoCapacitador}
+            br
+            | #{capacitadorPrincipal.empresaCapacitador}
+        .horizontal2 
+          img.qrr(src=`https://www.codigos-qr.com/qr/php/qr_img.php?d=https%3A%2F%2Fiktantraining.com%2Fregistros&s=6&e=m`)
+      .qr
+        | Folio:  #{user.folio}
+        br
+        | WWW.IKTANTRAINING.COM/REGISTROS
