@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 //const User = require('../models/User')
+//priri
 const cursoSchema = new mongoose.Schema({
     nombre: {
         type: String,
