@@ -5,7 +5,7 @@ const AppError = require('../utils/AppError');
 const {deleteOne, updateOne, getOne, getAll} = require('../controllers/handleFactory')
 //Modulo para la carga de archivos desde el cliente al servidor
 const multer = require('multer');
-//Modulo para modificar el tamaño de la photo user
+//Modulo para modificar el tamaño de la photo userw
 const sharp = require('sharp');
 /*
 //Manejar los archivos de imagen
