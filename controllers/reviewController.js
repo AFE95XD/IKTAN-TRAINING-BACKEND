@@ -1,4 +1,4 @@
-const Review = require('../models/review');
+const Review = require('../models/Review');
 //const catchAsync = require('../utils/catchAsync')
 
 const {deleteOne, updateOne, createOne, getOne, getAll} = require('../controllers/handleFactory')
