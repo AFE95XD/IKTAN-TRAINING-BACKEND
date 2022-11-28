@@ -94,7 +94,7 @@ app.use((req,res,next) =>{
 })
 app.use(express.static(`${__dirname}/../public/servidor`))
 
-const whileList = [process.env.FRONTEND_URL];
+const whileList = [process.env.FRONTEND_URL2];
 const corsOptions = {
     origin: function (origin, callback) {
       if(whileList.includes(origin)){
