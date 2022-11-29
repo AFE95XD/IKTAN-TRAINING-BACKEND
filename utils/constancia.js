@@ -41,11 +41,17 @@ class Constancia{
                 "bottom": ".3cm",
                 "left": ".3cm",
               },
+              childProcessOptions: {
+                env: {
+                  OPENSSL_CONF: '/dev/null',
+                },
+              }
         }
         //3)Crear el pdf
         //let fileName = `${carpeta}-${this.id}-${Date.now()}`
         let fileName = `${this.user.nombre} ${this.user.apellidoPaterno} ${this.user.apellidoMaterno}`
         let directorio = `public/cliente/constancias/${carpeta}/${fileName}.pdf`;
+        console.log(directorio)
         await pdf.create(html,opciones).toFile(directorio,function(err,res){
             if(err){
                 console.log(err);
@@ -56,7 +62,7 @@ class Constancia{
         await this.createPDF('iktan','landscape','Iktan','Letter')
      }
      async createDC3(){
-        await this.createPDF('dc-3','portrait','DC-3','A4')
+        await this.createPDF('dc-3','portrait','DC-3','Letter')
      }
 }
 

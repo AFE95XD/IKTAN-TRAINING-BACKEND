@@ -30,5 +30,6 @@ router.route('/deleteMe').delete(deleteMe);
 router.use(restrictTo('administrador','capacitador'))
 router.route('/').get(allUsers).post(createUser);
 router.route('/:id').get(oneUser).patch(updateUser).delete(deleteUser);
+//Rutas solo para recursos humanos
 
 module.exports = router;

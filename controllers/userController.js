@@ -174,6 +174,8 @@ const updateUser = updateOne(User);
 
 const deleteUser = deleteOne(User);
 
+
+
 module.exports = {createUser, oneUser,allUsers,deleteUser,updateUser,updateMe,deleteMe, getMe,
      updateMeDatesConstancias, updateMeDatesCapacitador, uploadUserPhoto, tamañoPhotoUser,
     uploadCapacitadorFirma, tamañoFirmaCapacitador};

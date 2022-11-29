@@ -24,7 +24,7 @@ const asignarCalificacion = async(req,res,next)=>{
     let contador =0;
     let promedio = 0;
         //console.log(newDoc.preguntasCerradas[2].respuestaCorrecta)
-        //console.log(evaluacionInicial)
+        //console.log(evaluacionFinal)
     for (var i = 0; i < evaluacionFinal.preguntasCerradas.length; i++) {
         if(evaluacionFinal.preguntasCerradas[i].respuestaCorrecta === req.body.preguntasCerradas[i].respuestaCorrecta){
             contador = contador +1;
@@ -38,11 +38,12 @@ const asignarCalificacion = async(req,res,next)=>{
 
 const validarCalificacion = async(req,res,next)=>{
     const user = await User.findById({_id: req.body.user});
-    //console.log(user)
     const curso = await Curso.findById({_id: req.body.curso})
     calificacion = req.body.calificacion;
      //DEBES DE BORRAR ESTO
      user.folio = req.body.folio;
+     console.log(user)
+
     //console.log(curso.capacitadorPrincipal)
     if(calificacion >= 8){
         //1)Generar constancia
