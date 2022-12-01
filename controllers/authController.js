@@ -20,14 +20,12 @@ const createSendToken =(user,statusCode,req,res)=>{
     //Un cookie es un pequeño fragmento de texto
     const cookieOptions ={
         //Fecha en milisegundos
+        secure: true,
+        //secure:  req.secure || req.headers['x-forwarded-proto'] === 'https',
         expires: new Date (
-            Date.now () + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-          ),
-          //La cookie solo se va a enviar si se usa el protocolo https
-          secure: true,
-          //La almacena y luego la envia en cada solicitud
-          httpOnly: true,
-          sameSite: 'none'
+        Date.now () + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+        ),
+        sameSite: 'none',
     }
     user.contraseña = undefined;
     res.cookie('jwt',token,cookieOptions);
@@ -73,6 +71,7 @@ const registro = catchAsync(async(req,res,next)=>{
         contraseñaActualizadaAt: req.body.contraseñaActualizadaAt,
     });
     //La url del usuario en donde va a cambiar su foto de perfil
+
     //const url = `${req.protocol}://${req.get('host')}/me`;
     const url = `${process.env.FRONTEND_URL}/confirmar/${newUser.token}`;
     //console.log(url)
@@ -84,16 +83,21 @@ const registro = catchAsync(async(req,res,next)=>{
 });
 
 const registroUsuarios= catchAsync(async(req,res,next)=>{
+    const idRH = req.user.id;
+    console.log(idRH);
     const usuarios = req.body.usuarios;
-    for(var x= 0; x<= usuarios.length; x++){
-        const numeroUsers = usuarios[x];
+    for(var x= 0; x<usuarios.length; x++){
+        const {nombre, contraseña, confirmarContraseña, apellidoPaterno,
+             apellidoMaterno,correo} = usuarios[x];
         /*
-            Datos a permitir nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, confirmarContraseña
+            Datos a permitir nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, 
+            confirmarContraseña
         */
-        const newUser = await User.create({numeroUsers});
-        console.log(numeroUsers);
+        const newUser = await User.create({nombre, contraseña, confirmarContraseña,
+            apellidoPaterno, apellidoMaterno, correo, idRH
+        });
     }
-    
+    res.status(200).json({status: 'successful'});
 })
 
 const login =catchAsync(async(req,res,next)=>{
@@ -128,7 +132,7 @@ const protect =catchAsync(async(req,res,next)=>{
     let token;
     //1)Traer el token y verificar si existe
     //startsWith significa si comienza con Bearer
-        //console.log(req.cookies)
+        console.log(req.cookies)
         if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
             token = req.headers.authorization.split(" ")[1];
         }else if(req.cookies.jwt){
