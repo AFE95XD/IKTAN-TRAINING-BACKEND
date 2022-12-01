@@ -123,7 +123,11 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    token:String
+    token:String,
+    //Dato que se ocupa cuando uno de RH crea cuentas de usuarios
+    idRH: {
+        type:String,
+    }
 });
 
 //Hashando contraseña antes de que se guarde
