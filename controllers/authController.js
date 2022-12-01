@@ -80,6 +80,19 @@ const registro = catchAsync(async(req,res,next)=>{
 
 });
 
+const registroUsuarios= catchAsync(async(req,res,next)=>{
+    const usuarios = req.body.usuarios;
+    for(var x= 0; x<= usuarios.length; x++){
+        const numeroUsers = usuarios[x];
+        /*
+            Datos a permitir nombre, apellidoPaterno, apellidoMaterno, correo, contraseña, confirmarContraseña
+        */
+        const newUser = await User.create({numeroUsers});
+        console.log(numeroUsers);
+    }
+    
+})
+
 const login =catchAsync(async(req,res,next)=>{
     const {correo, contraseña}= req.body;
     //1) verificar si existe email y la contraseña
@@ -237,4 +250,5 @@ const actualizarContraseña = catchAsync(async(req,res,next)=>{
     
 });
 
-module.exports = {registro, login,cerrarSesion ,protect, restrictTo, olvideContraseña, restablecerContraseña, actualizarContraseña,comprobarToken};
+module.exports = {registro, login,cerrarSesion ,protect, restrictTo, olvideContraseña, 
+    restablecerContraseña, actualizarContraseña,comprobarToken, registroUsuarios};

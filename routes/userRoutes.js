@@ -4,7 +4,8 @@ const express = require('express');
 const fs = require('fs');
 //Modulo userController
 const {createUser,allUsers,oneUser,updateUser,deleteUser, updateMe, deleteMe, getMe, updateMeDatesConstancias,updateMeDatesCapacitador, uploadUserPhoto, tamañoPhotoUser, uploadCapacitadorFirma, tamañoFirmaCapacitador} = require('../controllers/userController')
-const {registro,login,olvideContraseña,restablecerContraseña, protect,actualizarContraseña, restrictTo, cerrarSesion, comprobarToken} = require('../controllers/authController');
+const {registro,login,olvideContraseña,restablecerContraseña, protect,actualizarContraseña,
+     restrictTo, cerrarSesion, comprobarToken, registro, registroUsuarios} = require('../controllers/authController');
 const router = express.Router();
 
 //Autenticacion
@@ -26,10 +27,13 @@ router.route('/updateMeDatesConstancias').patch(restrictTo('user'),updateMeDates
 router.route('/updateMeDatesCapacitador').patch(restrictTo('capacitador'),uploadCapacitadorFirma,tamañoFirmaCapacitador,updateMeDatesCapacitador);
 router.route('/deleteMe').delete(deleteMe);
 
+//Rutas solo para recursos humanos
+router.route('/registroUsers').post(registroUsuarios);
+
 //Rutas solo para administradores
 router.use(restrictTo('administrador','capacitador'))
 router.route('/').get(allUsers).post(createUser);
 router.route('/:id').get(oneUser).patch(updateUser).delete(deleteUser);
-//Rutas solo para recursos humanos
+
 
 module.exports = router;
