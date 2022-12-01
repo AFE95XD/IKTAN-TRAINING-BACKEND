@@ -5,7 +5,7 @@ const fs = require('fs');
 //Modulo userController
 const {createUser,allUsers,oneUser,updateUser,deleteUser, updateMe, deleteMe, getMe, updateMeDatesConstancias,updateMeDatesCapacitador, uploadUserPhoto, tamañoPhotoUser, uploadCapacitadorFirma, tamañoFirmaCapacitador} = require('../controllers/userController')
 const {registro,login,olvideContraseña,restablecerContraseña, protect,actualizarContraseña,
-     restrictTo, cerrarSesion, comprobarToken, registro, registroUsuarios} = require('../controllers/authController');
+     restrictTo, cerrarSesion, comprobarToken, registroUsuarios} = require('../controllers/authController');
 const router = express.Router();
 
 //Autenticacion
