@@ -20,11 +20,14 @@ const createSendToken =(user,statusCode,req,res)=>{
     //Un cookie es un pequeño fragmento de texto
     const cookieOptions ={
         //Fecha en milisegundos
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN *24 *60 *60*1000),
-        //La cookie solo se va a enviar si se usa el protocolo https
-        secure:  req.secure || req.headers['x-forwarded-proto'] === 'https', 
-        //La almacena y luego la envia en cada solicitud
-        httpOnly: true,
+        expires: new Date (
+            Date.now () + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+          ),
+          //La cookie solo se va a enviar si se usa el protocolo https
+          secure: true,
+          //La almacena y luego la envia en cada solicitud
+          httpOnly: true,
+          sameSite: 'none'
     }
     user.contraseña = undefined;
     res.cookie('jwt',token,cookieOptions);
